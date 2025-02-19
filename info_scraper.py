@@ -4,8 +4,8 @@ import openpyxl # This is needed to handle .xlsx(Excel) files
 import xlsx_styling # This is another hand made .py code stylings
 
 API_KEY = "" # API key from Places API (Google Cloud Console), (❗❗ PLACE YOURS ❗❗)
-LOCATIONS = ["52.630886, 1.297355"] # Longtitude and Latitude from place that we want to scrape
-RADIUS = 100000  # Radius from given Longtitude and Latitude (We can adjust it), (How big radius is how more results we will collect)
+LOCATIONS = [""] # Longtitude and Latitude from place that we want to scrape (❗❗ PLACE YOURS ❗❗)
+RADIUS = 100  # Radius from given Longtitude and Latitude (You can adjust it), (Big radius is = more results we will collected)
 KEYWORD = "Hospital" # Searches given keyword from buildings inside of given radius
 MAX_RESULTS = 18000 # Maximum result we need to collect
 
