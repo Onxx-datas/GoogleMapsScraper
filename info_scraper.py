@@ -14,7 +14,7 @@ hospitals = [] # List to collect informations temporarly
 def get_phone_number(place_id): # Creating function to get phone number from Places API
     details_url = f"https://maps.googleapis.com/maps/api/place/details/json?place_id={place_id}&fields=formatted_phone_number&key={API_KEY}" # Details URL inside of Places API
     response = requests.get(details_url) # To send request to the details URL
-    if response.status_code == 200: # If response code is not 200 it means request was sent unsuccessfully and response is also good
+    if response.status_code == 200: # If response code is not 200 it means that request was sent unsuccessfully and response is also good
         details_data = response.json() # Saves details data to the JSON format
         return details_data.get("result", {}).get("formatted_phone_number", "N/A") # Phone number scraped Separately so that's why we need to add phone number into result
     return "N/A" # If response code is not 200 it gives us N/A (Not Available) response
