@@ -1,0 +1,4 @@
+googlemaps==4.10.0
+requests==2.31.0
+openpyxl==25.0.1
+python==3.13.0
