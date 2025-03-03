@@ -17,3 +17,9 @@ This script scrapes data using the Google Places API and extracts useful details
 - pip install openpyxl
 
 🔑Getting API key from Google Places API
+- Go to Google Cloud Console
+- Go Proejcts and click New Projects
+- Give a name to your project
+- Enable API to your new created proeject
+- Go to credentials and copy your API key
+- Paste API key to code's 
