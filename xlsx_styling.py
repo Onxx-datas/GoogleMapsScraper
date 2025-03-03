@@ -3,7 +3,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side # importi
 
 def apply_styles(file_name): # Creating funciton to call it on main script that named "apply_styles"
     wb = openpyxl.load_workbook(file_name) # Loading Excel workbook from actual file
-    ws = wb.active # Activating workbook "wb" as "ws"
+    ws = wb.active # Using workbook "wb" as "ws"
     header_font = Font(bold=True, color="FFFFFF") # Making header texts Bold and White
     header_fill = PatternFill(start_color="0073CF", end_color="0073CF", fill_type="solid") # Making background color as  Blue
     border_style = Border( # Applying styles to each 4 borders...
