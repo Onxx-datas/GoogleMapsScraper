@@ -12,7 +12,7 @@ This script scrapes data using the Google Places API and extracts useful details
 
 🛠 REQUIREMENTS TO USE SCRIPT 🛠
 
-📕Libraries
+📕Libraries to install
 - pip install requests
 - pip install openpyxl
 
@@ -22,4 +22,8 @@ This script scrapes data using the Google Places API and extracts useful details
 - Give a name to your project
 - Enable API to your new created proeject
 - Go to credentials and copy your API key
-- Paste API key to code's 
+- Paste API key to code's 6th line
+  
+ ⚙️Adjust scraping settings
+ 
+ 
