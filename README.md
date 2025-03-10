@@ -61,7 +61,7 @@ but exceeding the limit may require billing setup. If you purchase paid contract
 - Phone number: +998931215597
 - Instagram: @kom1lo.v
 
-Best regards,
+Best regards, ENJOY!
 Abdulaziz🙂
 
 
