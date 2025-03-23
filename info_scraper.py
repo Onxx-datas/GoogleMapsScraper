@@ -1,4 +1,4 @@
-import requests  # To send HTTP requests to the Google Places API
+import requests  # For send HTTP requests to the Google Places API
 import time  # To add delays (e.g., avoid triggering API rate limits)
 import openpyxl  # To create and handle Excel (.xlsx) files
 import xlsx_styling  # Custom module to style the Excel output file
