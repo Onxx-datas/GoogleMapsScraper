@@ -6,13 +6,13 @@ ratings -- perfect for lead generation, market research, and competitive analysi
 
 ## FEATURES
 
-Fetches hospital names, cordinates, phone number, rating, total ratings.
-Uses Google Places API to retrieve data.
-Saves received data into .xlsx(Excel) file inside of folder with actual scraper.
-Applies custom styling to your Excel file through xlsx_styling.
-Agrees completely with Terms of Use of Google Places API.
+Fetches hospital names, cordinates, phone number, rating, total ratings.  
+Uses Google Places API to retrieve data.  
+Saves received data into .xlsx(Excel) file inside of folder with actual scraper.  
+Applies custom styling to your Excel file through xlsx_styling.  
+Agrees completely with Terms of Use of Google Places API.  
 
-🛠 REQUIREMENTS TO USE SCRIPT 🛠
+## REQUIREMENTS TO USE SCRIPT
 
 📕Libraries to install
 - pip install requests
