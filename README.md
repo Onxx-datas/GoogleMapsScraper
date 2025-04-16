@@ -1,7 +1,7 @@
 # Google Places API Scraper🗺  
 GoogleMapScraper is a powerful and efficient Python-based tool designed to extract  
-structured data from Google Maps search results.  
-This scraper automates the process of collecting valuable business information such as names, addresses, phone numbers, ratings, websites, and more — perfect for lead generation, market research, and competitive analysis.
+structured data from Google Maps search results. This scraper automates the process  
+of collecting valuable business information such as names, addresses, phone numbers, ratings, websites, and more — perfect for lead generation, market research, and competitive analysis.
 
 🔥 FEATURES 🔥
 
