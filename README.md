@@ -1,5 +1,6 @@
 # Google Places API Scraper🗺  
-This script scrapes data using the Google Places API and extracts useful details about hospitals in a given location. (for example!)
+GoogleMapScraper is a powerful and efficient Python-based tool designed to extract structured data from Google Maps search results.  
+This scraper automates the process of collecting valuable business information such as names, addresses, phone numbers, ratings, websites, and more — perfect for lead generation, market research, and competitive analysis.
 
 🔥 FEATURES 🔥
 
