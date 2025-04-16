@@ -28,16 +28,28 @@ ratings -- perfect for lead generation, market research, and competitive analysi
 ## OUTPUT
 
 Your data will be saved in a XLSX file like this:  
+
 <img width="858" alt="Image" src="https://github.com/user-attachments/assets/4399ef31-1b0e-42c8-ac2f-9ce0523de0e0" />
 
-  📞Contact
-- Telegram: https://t.me/from_xd
-- Whatsapp: +998931215597
-- Email: kalabiq1@gmail.com
-- Phone number: +998931215597
-- Instagram: @kom1lo.v
+## NOTE
 
-Best regards, ENJOY!
+- Avoid scraping too fast --- Google may temporarly block your IP  
+- For best result use VPN or rotating residential proxies  
+- This tool is for educational purposes only. Make sure to follow Google’s terms of service.
+
+## DISCLAIMER and LICENSE
+
+MIT License --- Feel free to use, modify, and distribute
+
+## CONTACT and AUTHOR
+### Made with 💻 and ☕ by Abdulaziz (Onxx-datas)  
+- Telegram: https://t.me/from_xd  
+- Whatsapp: +998931215597  
+- Email: kalabiq1@gmail.com  
+- Phone number: +998931215597  
+- Instagram: @kom1lo.v  
+
+Best regards, ENJOY!  
 Abdulaziz🙂
 
 
