@@ -63,4 +63,3 @@ wb.save(file_name)
 print(f"💾 Hospital data saved to {file_name}")  # Confirmation message
 # Apply styling using the custom xlsx_styling module
 xlsx_styling.apply_styles(file_name)
-print("✅ Check Excel file to see scraped information")  # Final success message
