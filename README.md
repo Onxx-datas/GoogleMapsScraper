@@ -28,7 +28,7 @@ ratings -- perfect for lead generation, market research, and competitive analysi
 ## OUTPUT
 
 Your data will be saved in a XLSX file like this:  
-
+<img width="858" alt="Image" src="https://github.com/user-attachments/assets/4399ef31-1b0e-42c8-ac2f-9ce0523de0e0" />
 
   📞Contact
 - Telegram: https://t.me/from_xd
