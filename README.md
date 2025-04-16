@@ -1,4 +1,4 @@
-Google Places API Scraper
+# Google Places API Scraper🗺  
 This script scrapes data using the Google Places API and extracts useful details about hospitals in a given location. (for example!)
 
 🔥 FEATURES 🔥
