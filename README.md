@@ -1,3 +1,9 @@
+# ⚠️ WARNING  
+## This project:  
+## - Violates 14 international laws  
+## - Has made 3 Google lawyers cry  
+## - Will probably get you blacklisted from Cloudflare  
+
 # Google Places API Scraper🗺  
 GoogleMapScraper is a powerful and efficient Python-based tool designed to extract  
 structured data from Google Maps search results. This scraper automates the process  
