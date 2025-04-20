@@ -1,62 +1,63 @@
 import requests
 import pandas as pd
-import threading
 import time
 import os
 import random
-import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 
-# ===== BLOCK 1: Enhanced API Keys & Proxy Setup =====
+
+
+############################## NOTE ################################
+######### THE SCRIPT CAN TAKE MORE THAN 15 MINUTES OF WORKING #########
+########### TO GET THE ALL RESULTS FROM THE API BY FORCING IT"S LIMITS #
+
+
+
+
 API_KEYS = [
-
-]
-
-# Proxy rotation setup (BLOCK 6)
-PROXY_LIST = [
-    "http://user:pass@gate1:port",
-    "http://user:pass@gate2:port",
-    "http://user:pass@gate3:port"
+#### REMOVED PERMANENTLY
 ]
 
 PLACES_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
 
-# ===== BLOCK 2: Hyper-Optimized Grid Parameters =====
+# Optimized grid parameters
 CENTER_LAT = 52.51475784439185
 CENTER_LNG = 13.398880854990345
-SHIFT = [x * 0.0012 for x in range(-5, 6)]  # 11x11 grid (121 points)
-RADIUS = 1500  # Smaller radius for hyper-local overlaps
+SHIFT = [x * 0.0012 for x in range(-5, 6)]  # 11x11 grid
+RADIUS = 1500
 MAX_RESULTS = 350
 
-# ===== BLOCK 3: Compound Type Fusion =====
+# Compound type searches
 PLACE_TYPES = ['museum|bar', 'restaurant|tourist_attraction', 'hotel|spa']
-
-# ===== BLOCK 4: Parallel Processing Core =====
-def parallel_token_harvest(tokens):
-    with ThreadPoolExecutor(max_workers=len(API_KEYS)) as executor:
-        futures = [executor.submit(fetch_pages, token) for token in tokens]
-        return [f.result() for f in futures]
 
 def get_places(api_key, params):
     params['key'] = api_key
-    # Proxy rotation implementation (BLOCK 6)
-    proxy = {"http": random.choice(PROXY_LIST), "https": random.choice(PROXY_LIST)}
     try:
-        response = requests.get(PLACES_URL, params=params, proxies=proxy, timeout=10)
+        response = requests.get(PLACES_URL, params=params, timeout=10)
         return response.json()
-    except:
+    except Exception as e:
+        print(f"Request failed: {e}")
         return {'results': [], 'status': 'REQUEST_FAILED'}
+
+def fetch_page(args):
+    """Fixed function to handle page fetching for parallel processing"""
+    api_key, params = args
+    return get_places(api_key, params)
+
+def parallel_token_harvest(token_params):
+    """Process multiple pages in parallel"""
+    with ThreadPoolExecutor(max_workers=len(API_KEYS)) as executor:
+        results = list(executor.map(fetch_page, token_params))
+    return results
 
 def get_places_with_all_pages(api_key, params):
     all_results = []
     while True:
         data = get_places(api_key, params)
         
-        # ===== BLOCK 5: Response Decay Handling =====
+        # Error handling with randomized delay
         if 'error' in data:
             time.sleep(random.uniform(1.8, 3.2))  # Randomized delay
-            api_index = (API_KEYS.index(api_key) + 1) % len(API_KEYS)
-            api_key = API_KEYS[api_index]
             continue
             
         results = data.get('results', [])
@@ -65,8 +66,9 @@ def get_places_with_all_pages(api_key, params):
         next_token = data.get('next_page_token')
         if not next_token:
             break
+            
         params['pagetoken'] = next_token
-        time.sleep(random.uniform(1.8, 2.5))  # Randomized delay
+        time.sleep(random.uniform(1.8, 2.5))  # Google requires delay between page tokens
 
     return all_results
 
@@ -91,7 +93,6 @@ def get_all_places_grid():
                 'location': f'{lat},{lng}',
                 'radius': RADIUS,
                 'type': place_type,
-                # ===== BLOCK 6: Data Enrichment Fields =====
                 'fields': 'current_opening_hours,reviews,website,price_level'
             }
 
@@ -128,9 +129,7 @@ def save_to_excel(places, filename="places_results.xlsx"):
             'Address': place.get('vicinity'),
             'Latitude': place.get('geometry', {}).get('location', {}).get('lat'),
             'Longitude': place.get('geometry', {}).get('location', {}).get('lng'),
-            # ===== BLOCK 6: Enhanced Data Extraction =====
             'Opening Hours': str(place.get('current_opening_hours', {}).get('weekday_text', [])),
-            'Reviews Snapshot': str([r.get('text')[:50] for r in place.get('reviews', [])][:3]),
             'Price Level': place.get('price_level', 'N/A')
         }
         data.append(place_data)
