@@ -1,4 +1,3 @@
-# main.py
 import requests
 import pandas as pd
 import time
@@ -19,12 +18,11 @@ class CityScraper(QObject):
         self.city_name = city_name
         self.place_type = place_type
         self.running = True
-        
-        # Configuration
+
         self.API_KEYS = [   "AIzaSyAXjiKHAlaWdEKF_QIdNX7wNmbMjud_1XQ",
                             "AIzaSyBcjel-BwPSUrZ4Bw_-Exu1hhIyOneSDuE",
                             "AIzaSyAHkvuQ9Y0E6nK-u_Fs98pYXWpyD5ZL_0M"]
-        self.SEARCH_SPACING = 500  # meters between grid points
+        self.SEARCH_SPACING = 500
         self.MAX_RESULTS = 1000
 
     def get_city_polygon(self):
