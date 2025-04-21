@@ -17,27 +17,22 @@ class ScraperGUI(QMainWindow):
         self.setGeometry(300, 300, 600, 400)
 
         layout = QVBoxLayout()
-        
-        # City Input
+
         self.city_input = QLineEdit(self)
         self.city_input.setPlaceholderText("Enter city name (e.g., 'Norwich, UK')")
         layout.addWidget(self.city_input)
 
-        # Place Type Input
         self.type_input = QLineEdit(self)
         self.type_input.setPlaceholderText("Enter place type (e.g., 'restaurant')")
         layout.addWidget(self.type_input)
 
-        # Progress Bar
         self.progress = QProgressBar(self)
         layout.addWidget(self.progress)
 
-        # Log Display
         self.log = QTextEdit(self)
         self.log.setReadOnly(True)
         layout.addWidget(self.log)
 
-        # Control Buttons
         self.start_btn = QPushButton('Start Scraping', self)
         self.start_btn.clicked.connect(self.start_scraping)
         layout.addWidget(self.start_btn)

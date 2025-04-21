@@ -28,19 +28,18 @@ class CityScraper(QObject):
         self.MAX_RESULTS = 1000
 
     def get_city_polygon(self):
-        """Robust city boundary fetcher with proper headers and retries"""
         try:
             url = f"https://nominatim.openstreetmap.org/search?q={self.city_name}&format=geojson&polygon_geojson=1"
             headers = {
                 'User-Agent': 'CityScraperPro/1.0 (contact@yourdomain.com)',
-                'Referer': 'https://yourdomain.com'  # Optional but recommended
+                'Referer': 'https://yourdomain.com'
             }
             
-            for attempt in range(3):  # Retry mechanism
+            for attempt in range(3):
                 response = requests.get(url, headers=headers, timeout=10)
                 
                 if response.status_code == 403:
-                    time.sleep(5 ** attempt)  # Exponential backoff (5s, 25s, 125s)
+                    time.sleep(5 ** attempt)
                     continue
                     
                 response.raise_for_status()
@@ -63,11 +62,10 @@ class CityScraper(QObject):
             return None
 
     def generate_search_points(self, polygon):
-        """Generate search points within city boundaries"""
         min_lon, min_lat, max_lon, max_lat = polygon.bounds
         points = []
         
-        delta = 0.0045  # ~500m in degrees
+        delta = 0.0045
         lon = min_lon
         while lon <= max_lon:
             lat = min_lat
@@ -81,7 +79,6 @@ class CityScraper(QObject):
         return points
 
     def get_places_batch(self, args):
-        """Thread worker for API requests"""
         api_key, params = args
         if not self.running:
             return []
@@ -98,26 +95,21 @@ class CityScraper(QObject):
             return []
 
     def run(self):
-        """Main scraping process"""
         try:
-            # Step 1: Get city boundaries
             self.update_progress.emit(0, "🔍 Fetching city boundaries...")
             city_polygon = self.get_city_polygon()
             if not city_polygon:
                 return
 
-            # Step 2: Generate search grid
             search_points = self.generate_search_points(city_polygon)
             total_points = len(search_points)
             
-            # Step 3: Configure API parameters
             params = {
                 'radius': 1500,
                 'type': self.place_type,
                 'fields': 'name,geometry,place_id,rating,user_ratings_total,price_level,opening_hours'
             }
 
-            # Step 4: Start parallel scraping
             results = []
             seen_ids = set()
             api_index = 0
@@ -133,7 +125,6 @@ class CityScraper(QObject):
                     api_key = self.API_KEYS[api_index % len(self.API_KEYS)]
                     futures.append(executor.submit(self.get_places_batch, (api_key, params.copy())))
                     
-                    # Update progress every 5 points
                     if idx % 5 == 0:
                         progress = 10 + (idx / total_points * 80)
                         self.update_progress.emit(int(progress), 
@@ -142,7 +133,6 @@ class CityScraper(QObject):
                     api_index += 1
                     time.sleep(random.uniform(0.5, 1.5))
 
-                # Process results
                 for idx, future in enumerate(futures):
                     if not self.running:
                         break
@@ -158,7 +148,6 @@ class CityScraper(QObject):
                             seen_ids.add(pid)
                             results.append(place)
                             
-                    # Update progress
                     progress = 10 + ((idx + 1) / total_points * 80)
                     self.update_progress.emit(int(progress),
                         f"📥 Collected {len(results)}/{self.MAX_RESULTS} valid places")
@@ -166,7 +155,6 @@ class CityScraper(QObject):
                     if len(results) >= self.MAX_RESULTS:
                         break
 
-            # Finalize
             df = pd.DataFrame([self.process_result(r) for r in results])
             self.finished.emit(df)
 
@@ -174,7 +162,6 @@ class CityScraper(QObject):
             self.error_occurred.emit(str(e))
 
     def process_result(self, place):
-        """Structure the scraped data"""
         return {
             'Name': place.get('name'),
             'Place ID': place.get('place_id'),
